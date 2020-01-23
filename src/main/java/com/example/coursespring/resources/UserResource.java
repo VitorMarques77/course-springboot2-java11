@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.coursespring.entities.User;
 
+//classe responsável por controlar as solicitações de recursos da entidade usuario
+
 @RestController
 @RequestMapping(value = "/users")
 public class UserResource {
