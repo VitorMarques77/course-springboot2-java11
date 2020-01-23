@@ -9,28 +9,28 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.coursespring.entities.User;
-import com.example.coursespring.services.UserService;
+import com.example.coursespring.entities.Order;
+import com.example.coursespring.services.OrderService;
 
 //classe responsável por controlar as solicitações de recursos da entidade usuario
 
 @RestController
-@RequestMapping(value = "/users")
-public class UserResource {
+@RequestMapping(value = "/orders")
+public class OrderResource {
 	
 	@Autowired
-	private UserService service;
+	private OrderService service;
 	
 	@GetMapping
 	//Metodo para retornar a listagem de todos os usuarios
-	public ResponseEntity<List<User>> findAll(){
-		List<User> list = service.findAll(); 
+	public ResponseEntity<List<Order>> findAll(){
+		List<Order> list = service.findAll(); 
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<User> findById(@PathVariable Long id){
-		User obj = service.findById(id);
+	public ResponseEntity<Order> findById(@PathVariable Long id){
+		Order obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
