@@ -27,7 +27,7 @@ public class Order implements Serializable{
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'",timezone = "GMT") //formatação da data para ISO-8601
 	private Instant instant;
 	
-	private Integer orderStatus;
+	private Integer orderStatus; // necessario definir metodos para que seja feita a instancia do OrderStatus
 	
 	@ManyToOne // anotacao para informar que client é uma FK
 	@JoinColumn(name = "client_id") // anotacao para criar uma coluna com a FK

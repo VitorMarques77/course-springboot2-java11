@@ -1,5 +1,7 @@
 package com.example.coursespring.entities.enums;
 
+// Implementacao do enum para ser usado como int na classe order
+
 public enum OrderStatus {
 
 	WAITING_PAYMENT(1),
