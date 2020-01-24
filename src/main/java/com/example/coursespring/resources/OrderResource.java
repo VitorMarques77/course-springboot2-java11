@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.coursespring.entities.Order;
 import com.example.coursespring.services.OrderService;
 
-//classe responsável por controlar as solicitações de recursos da entidade usuario
+//classe responsável por controlar as solicitações de recursos da entidade order
 
 @RestController
 @RequestMapping(value = "/orders")

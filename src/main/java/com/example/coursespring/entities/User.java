@@ -27,7 +27,7 @@ public class User implements Serializable {
 	private String phone;
 	private String password;
 	
-	@JsonIgnore
+	@JsonIgnore // anotacao para que não seja carregado esse campo quando for selecionado a consulta GET no db
 	@OneToMany(mappedBy = "client") // anotacao para mapear os pedidos do usuario
 	private List<Order> orders = new ArrayList<>();
 	
