@@ -48,6 +48,16 @@ public class TestConfig implements CommandLineRunner /*executar algum código an
 		Category cat2 = new Category(null, "Books");
 		Category cat3 = new Category(null, "Computers"); 
 		
+		categoryRepository.saveAll(Arrays.asList(cat1,cat2,cat3));
+		
+		p1.getCategories().add(cat2);
+		p2.getCategories().addAll(Arrays.asList(cat1, cat3));
+		p3.getCategories().add(cat3);
+		p4.getCategories().add(cat3);
+		p5.getCategories().add(cat2);
+		
+		productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
+		
 		User u1 = new User(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");
 		User u2 = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456"); 
 		
@@ -57,7 +67,5 @@ public class TestConfig implements CommandLineRunner /*executar algum código an
 		
 		userRepository.saveAll(Arrays.asList(u1,u2));
 		orderRepository.saveAll(Arrays.asList(o1,o2,o3));
-		categoryRepository.saveAll(Arrays.asList(cat1,cat2,cat3));
-		productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
 	}
 }
