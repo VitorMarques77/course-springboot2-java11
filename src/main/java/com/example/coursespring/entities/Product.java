@@ -36,8 +36,8 @@ public class Product implements Serializable {
 	@JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private Set<Category> categories = new HashSet<>();
 
-	/* atributo order foi mapeado pela classe OrderItemPk, para acessar é id.order
-	é criado um HashSet pois queremos a lista de itens do pedido*/
+	/* atributo order foi mapeado pela classe OrderItemPk, para acessar é id.product
+	é criado um HashSet pois queremos a lista de orders do produto*/
 	@OneToMany(mappedBy = "id.product") 
 	private Set<OrderItem> items = new HashSet<>();
 	
@@ -97,7 +97,7 @@ public class Product implements Serializable {
 		return categories;
 	}
 	
-	@JsonIgnore
+	@JsonIgnore // colocamos o jsonignore porque não desejamos que o produto retorne a lista de orders relacionadas a ele
 	public Set<Order> getOrders() {
 		Set<Order> set = new HashSet<Order>();
 		for(OrderItem x: items) {

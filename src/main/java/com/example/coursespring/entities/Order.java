@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.example.coursespring.entities.enums.OrderStatus;
@@ -40,6 +42,11 @@ public class Order implements Serializable{
 	é criado um HashSet pois queremos a lista de itens do pedido*/
 	@OneToMany(mappedBy = "id.order") 
 	private Set<OrderItem> items = new HashSet<>();
+	
+	/* relacionamento um para um com payment e cascadeall para que seja
+	passado para a classe payment as alteraçoes feitas na classe order*/
+	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL) 
+	private Payment payment;
 	
 	public Order() {
 		
@@ -79,6 +86,13 @@ public class Order implements Serializable{
 	
 	public Set<OrderItem> getItems(){
 		return items;
+	}
+	
+	public Payment getPayment() {
+		return payment;
+	}
+	public void setPayment(Payment payment) {
+		this.payment = payment;
 	}
 	
 	@Override
