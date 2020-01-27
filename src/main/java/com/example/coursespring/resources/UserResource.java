@@ -45,7 +45,7 @@ public class UserResource {
 		obj = service.insert(obj);
 		
 		// metodo usado para que seja retornado o código de resposta 201 do http
-		// metodo para gerar o caminho do insert de acordo com o id gerado apos a insercao
+		// metodo para gerar o caminho do metodo insert de acordo com o id gerado apos a insercao
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		
 		// converte o caminho para um corpo de objeto do java e mostra ele no http

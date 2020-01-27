@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.coursespring.entities.User;
 import com.example.coursespring.repositories.UserRepository;
+import com.example.coursespring.services.exceptions.ResourceNotFoundException;
 
 @Service //anotation para que seja possivel registrar a classe para injeção de dependencia automatica.
 public class UserService {
@@ -20,7 +21,8 @@ public class UserService {
 	}
 	public User findById(Long id) {
 		Optional<User> obj = repository.findById(id);
-		return obj.get();
+		// lançamos a exception personalidada atraves do orElseThrow e instanciamos ela atraves de uma expressao lambda
+		return obj.orElseThrow(()->new ResourceNotFoundException(id));
 	}
 	public User insert(User obj) {
 		return repository.save(obj);
