@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,16 +43,18 @@ public class UserResource {
 	public ResponseEntity<User> insert(@RequestBody User obj){
 		obj = service.insert(obj);
 		
-		
+		// metodo usado para que seja retornado o código de resposta 201 do http
 		// metodo para gerar o caminho do insert de acordo com o id gerado apos a insercao
-		URI uri = ServletUriComponentsBuilder
-				.fromCurrentRequest()
-				.path("/{id}")
-				.buildAndExpand(obj.getId())
-				.toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		
 		// converte o caminho para um corpo de objeto do java e mostra ele no http
 		return ResponseEntity.created(uri).body(obj);
+	}
+	
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Long id){
+		service.delete(id);
+		return ResponseEntity.noContent().build();
 	}
 	
 }
