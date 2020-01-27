@@ -33,6 +33,7 @@ public class OrderItem implements Serializable{
 		this.price = price;
 	}
 	
+	// necessario colocar get no inicio do metodo para que ele apareça no postman
 	public Double getSubTotal() {
 		return price*quantity;
 	}

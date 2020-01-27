@@ -84,6 +84,7 @@ public class Order implements Serializable{
 		this.client = client;
 	}
 	
+	// necessario colocar get no inicio do metodo para que ele apareça no postman
 	public Double getTotal() {
 		double sum = 0;
 		for(OrderItem x:items) {
