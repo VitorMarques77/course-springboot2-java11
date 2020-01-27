@@ -36,7 +36,9 @@ public class Order implements Serializable{
 	@JoinColumn(name = "client_id") // anotacao para criar uma coluna com a FK
 	private User client;
 	
-	@OneToMany(mappedBy = "id.order")
+	/* atributo order foi mapeado pela classe OrderItemPk, para acessar é id.order
+	é criado um HashSet pois queremos a lista de itens do pedido*/
+	@OneToMany(mappedBy = "id.order") 
 	private Set<OrderItem> items = new HashSet<>();
 	
 	public Order() {

@@ -9,7 +9,9 @@ import javax.persistence.ManyToOne;
 import com.example.coursespring.entities.Order;
 import com.example.coursespring.entities.Product;
 
-@Embeddable
+//Classe auxiliar para formar a chave primaria composta de OrderItem
+
+@Embeddable // indica que a classe ira compor uma tabela de outra classe com a anotacao @Embedded
 public class OrderItemPK implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
