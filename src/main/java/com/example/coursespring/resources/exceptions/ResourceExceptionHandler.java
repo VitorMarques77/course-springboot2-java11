@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.example.coursespring.services.exceptions.DatabaseException;
 import com.example.coursespring.services.exceptions.ResourceNotFoundException;
 
 @ControllerAdvice // anotacao para informar que as exception devem ser direcionadas para essa classe
@@ -22,6 +23,14 @@ public class ResourceExceptionHandler {
 		// é instanciado o standarerror com as atributos definidos acima
 		StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
 		// retornado o responseentity.status para definir o código de resposta e depois retornamos o body com o corpo do erro.
+		return ResponseEntity.status(status).body(err);
+	}
+	
+	@ExceptionHandler(DatabaseException.class)
+	public ResponseEntity<StandardError> databaseException(DatabaseException e, HttpServletRequest request){
+		String error = "Database error";
+		HttpStatus status = HttpStatus.BAD_REQUEST;
+		StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
 	}
 }
